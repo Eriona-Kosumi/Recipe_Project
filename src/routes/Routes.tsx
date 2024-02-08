@@ -19,7 +19,7 @@ export const appRoutes: RouteObject[] = [
   {
     path: "/",
     element: (
-      <RouteWrapper routeType={RouteType.PUBLIC}>
+      <RouteWrapper routeType={RouteType.PRIVATE}>
         <Home />
       </RouteWrapper>
     ),

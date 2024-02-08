@@ -8,9 +8,10 @@ import { useEffect } from "react";
 import { allFilms } from "../../api/Films/films.client";
 import { Link } from "react-router-dom";
 import Button from "../../components/shared/Button/Button";
+import { useAuthContext } from "../../lib/context/AuthContext/AuthContext";
 
 export const Home = () => {
-
+  const {logout} = useAuthContext()
   return (
     <FilmsContextProvider>
       <div className="ui container mt-6">
@@ -18,6 +19,9 @@ export const Home = () => {
           <Link to='add-film'>
             Add Film
           </Link>
+        </Button>
+        <Button onClick={logout}>
+          Logout
         </Button>
         <FilmsList />
       </div>

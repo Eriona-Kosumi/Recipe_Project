@@ -50,7 +50,7 @@ export const AuthContextProvider = (props: AuthContextProviderProps) => {
 
   const logout = async () => {
     setUser(undefined);
-    localforage.removeItem(LOCAL_STORAGE_KEY);
+    localStorage.removeItem(LOCAL_STORAGE_KEY);
   };
 
   // if (loading) return <LoadingScreen />;
