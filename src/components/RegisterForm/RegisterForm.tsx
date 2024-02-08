@@ -23,28 +23,7 @@ export const RegisterForm = () => {
     <div className="LoginForm">
       <form className="mb-3" onSubmit={formik.handleSubmit}>
         <h2 className="mt-8 mb-12 text-4xl font-bold text-left text-black md:mt-0">Sign up</h2>
-        <Input
-          className="mb-2.5"
-          id="firstName"
-          name="firstName"
-          placeholder="First Name"
-          value={formik.values.firstName}
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          error={formik.errors.firstName}
-          touched={formik.touched.firstName}
-        />
-        <Input
-          className="mb-2.5"
-          id="lastName"
-          name="lastName"
-          placeholder="Last Name"
-          value={formik.values.lastName}
-          onBlur={formik.handleBlur}
-          onChange={formik.handleChange}
-          error={formik.errors.lastName}
-          touched={formik.touched.lastName}
-        />
+        
         <Input
           className="mb-2.5"
           id="email"
@@ -68,6 +47,19 @@ export const RegisterForm = () => {
           onBlur={formik.handleBlur}
           error={formik.errors.password}
           touched={formik.touched.password}
+        />
+
+        <Input
+          className="mb-2.5"
+          type="password"
+          name="passwordConfirmation"
+          id="password"
+          placeholder={"Password Confirmation"}
+          value={formik.values.passwordConfirmation}
+          onChange={formik.handleChange}
+          onBlur={formik.handleBlur}
+          error={formik.errors.passwordConfirmation}
+          touched={formik.touched.passwordConfirmation}
         />
 
         <Button className="min-w-full uppercase rounded-md" type="submit" loading={formik.isSubmitting}>

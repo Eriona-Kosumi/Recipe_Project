@@ -4,7 +4,7 @@ export interface FilmRespnseType {
   title: string;
   description: string;
   price: number;
-  img?: string;
+  img: string;
   director: string;
   duration: number;
   featured: boolean;

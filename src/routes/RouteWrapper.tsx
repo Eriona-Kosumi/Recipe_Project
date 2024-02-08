@@ -9,8 +9,9 @@ interface Props {
 }
 
 export const RouteWrapper = ({ routeType, children }: Props) => {
-  const { isAuthenticated } = useAuthContext();
-
+  const { isAuthenticated, user } = useAuthContext();
+  console.log({user, isAuthenticated});
+  
   // const userHasRequiredRole =
   //   user &&
   //   allowedRoles?.some((element) => {
@@ -22,7 +23,7 @@ export const RouteWrapper = ({ routeType, children }: Props) => {
   if (!isAuthenticated && routeType === RouteType.GUEST) return children;
 
   if (!isAuthenticated && routeType === RouteType.PRIVATE) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   return children;

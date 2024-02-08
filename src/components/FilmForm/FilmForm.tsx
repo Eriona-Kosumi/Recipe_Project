@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
-import { createFilm, editFilm } from '../../api/Films/films.client';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { createFilm, editFilm, getFilmById } from '../../api/Films/films.client';
 import { AddFilmRequest, FilmRespnseType } from '../../api/Films/films.types';
 import { useFilmsContext } from '../../lib/context/FilmsContext/FilmsContext';
-import { validate } from '../../lib/helpers/validateFilmForm';
 import FormMessage from './FormMessage';
 
 export interface FormDataType{
@@ -24,7 +24,9 @@ export interface ErrorFormDataType{
 }
 
 const FilmForm = () => {
-  const {selectedFilm} = useFilmsContext()
+  const {filmId} = useParams();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState<AddFilmRequest>({
     title: "",
     description: "",
@@ -37,19 +39,20 @@ const FilmForm = () => {
 
   const [errors, setErrors] = useState<{[key:string]: string}>();
 
-  useEffect(() => {
-    setFormData({
-      title: selectedFilm?.title ?? '',
-      description: selectedFilm?.description ?? '',
-      director: selectedFilm?.director ?? '',
-      img: selectedFilm?.img ?? '',
-      duration: selectedFilm?.duration ?? 0,
-      price: selectedFilm?.price ?? 0,
-      featured: selectedFilm?.featured ?? false,
-    })
-  }, [selectedFilm])
-
   const {addNewFilm, updateFilm} = useFilmsContext()
+
+  useEffect(() => {
+    if(filmId){
+      console.log('fetching');
+      
+      getFilmById(filmId).then(response => {
+        console.log({response});
+        const { film } = response.data 
+        
+        setFormData(film)
+      })
+    }
+  }, [])
 
   const handleStringInput = (event: React.FormEvent<HTMLInputElement>) => {
     const {name, value} = event.currentTarget;
@@ -77,24 +80,9 @@ const FilmForm = () => {
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-      if(selectedFilm){
-        editFilm(selectedFilm?._id, formData).then(
-          res => {
-            setErrors({})
-            setFormData({
-              title: "",
-              description: "",
-              director: "",
-              img: "",
-              duration: 0,
-              price: 0,
-              featured: false
-            })
-            updateFilm(selectedFilm?._id, res.data.film)
-          }
-        ).catch(err => setErrors(err?.response.data.errors))
-      }else{
-        createFilm(formData).then((response) =>{
+    if(filmId){
+      editFilm(filmId, formData).then(
+        res => {
           setErrors({})
           setFormData({
             title: "",
@@ -105,12 +93,29 @@ const FilmForm = () => {
             price: 0,
             featured: false
           })
-          addNewFilm(response?.data?.film)
-        }).catch(err => {
-          console.log({err})
-          setErrors(err?.response.data.errors)
+          updateFilm(filmId, res.data.film)
+          navigate('/')
+        }
+      ).catch(err => setErrors(err?.response.data.errors))
+    }else{
+      createFilm(formData).then((response) =>{
+        setErrors({})
+        setFormData({
+          title: "",
+          description: "",
+          director: "",
+          img: "",
+          duration: 0,
+          price: 0,
+          featured: false
         })
-      }
+        addNewFilm(response?.data?.film)
+        navigate('/')
+      }).catch(err => {
+        console.log({err})
+        setErrors(err?.response.data.errors)
+      })
+    }
   }
 
   return (
@@ -151,7 +156,7 @@ const FilmForm = () => {
         </div>
 
         <button className='ui button' type='submit'>
-          {selectedFilm ? 'Update' : 'Save'}
+          {filmId ? 'Update' : 'Save'}
         </button>
     </form>
   )

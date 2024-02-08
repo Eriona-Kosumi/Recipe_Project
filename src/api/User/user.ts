@@ -17,11 +17,9 @@ export interface LoginRegisterResponse {
 }
 
 export interface RegisterInput {
-  firstName: string;
-  lastName: string;
-  dateOfBirth: string;
   email: string;
   password: string;
+  passwordConfirmation: string;
 }
 
 export interface LoginInput {

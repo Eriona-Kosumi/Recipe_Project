@@ -4,9 +4,9 @@ import { User } from "../../../api/User/user";
 export interface AuthContextType {
   isAuthenticated: boolean;
   isLoading: boolean;
-  user?: User | undefined;
+  user?: { token: string } | undefined;
   error?: any;
-  login: (user: User) => void;
+  login: (token: string) => void;
   logout: () => void;
 }
 

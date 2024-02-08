@@ -6,14 +6,19 @@ import FilmsContextProvider from "../../lib/context/FilmsContext/FilmsContextPro
 import FilmForm from "../../components/FilmForm/FilmForm";
 import { useEffect } from "react";
 import { allFilms } from "../../api/Films/films.client";
+import { Link } from "react-router-dom";
+import Button from "../../components/shared/Button/Button";
 
 export const Home = () => {
 
   return (
     <FilmsContextProvider>
       <div className="ui container mt-6">
-        <FilmForm />
-        <hr />
+        <Button>
+          <Link to='add-film'>
+            Add Film
+          </Link>
+        </Button>
         <FilmsList />
       </div>
     </FilmsContextProvider>

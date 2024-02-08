@@ -7,6 +7,7 @@ import { Home } from "../pages/Home/Home";
 import { Login } from "../pages/Login/Login";
 import { Register } from "../pages/Register/Register";
 import { ResetPassword } from "../pages/ResetPassword/ResetPassword";
+import AddFilm from "../pages/AddFilm/AddFilm";
 
 export enum RouteType {
   PUBLIC,
@@ -22,6 +23,22 @@ export const appRoutes: RouteObject[] = [
         <Home />
       </RouteWrapper>
     ),
+  },
+  {
+    path: 'add-film',
+    element: (
+      <RouteWrapper routeType={RouteType.PRIVATE}>
+        <AddFilm />
+      </RouteWrapper>
+    )
+  },
+  {
+    path: 'update-film/:filmId',
+    element: (
+      <RouteWrapper routeType={RouteType.PRIVATE}>
+        <AddFilm />
+      </RouteWrapper>
+    )
   },
   {
     path: "/login",

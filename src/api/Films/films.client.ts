@@ -1,10 +1,15 @@
 import { apiRequest } from "../Api";
-import { AddFilmRequest, FilmsRespnseType } from "./films.types";
+import { AddFilmRequest, FilmRespnseType, FilmsRespnseType } from "./films.types";
 
 //funksionet me endpointa edhe metoda
 export const allFilms = async () =>
   await apiRequest<{}, FilmsRespnseType>({
     url: "api/films",
+  });
+
+export const getFilmById = async (filmId: string) =>
+  await apiRequest<{}, { film: FilmRespnseType }>({
+    url: `api/films/${filmId}`,
   });
 
 export const createFilm = async (film: AddFilmRequest) =>

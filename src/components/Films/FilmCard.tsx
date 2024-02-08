@@ -3,6 +3,7 @@ import Featured from "./Featured";
 import ReactImageFallback from "react-image-fallback";
 import { AddFilmRequest, FilmRespnseType } from "../../api/Films/films.types";
 import { deleteFilmApi } from "../../api/Films/films.client";
+import { useNavigate } from "react-router-dom";
 
 interface Props{
     film: FilmRespnseType,
@@ -21,6 +22,7 @@ export interface FilmInterface{
 
 const FilmCard = ({film}: Props) => {
     const {selectFilm, deleteFilm} = useFilmsContext()
+    const navigate = useNavigate();
 
     const deleteFilmHandler = () => {
       deleteFilmApi(film._id).then(() => {
@@ -50,7 +52,7 @@ const FilmCard = ({film}: Props) => {
           <i className="icon wait right" /> {film.duration} min
         </span>
       </div>
-      <button onClick={() => {selectFilm(film._id)}} className='ui button' type="button">Edit</button>
+      <button onClick={() => {navigate(`update-film/${film._id}`)}} className='ui button' type="button">Edit</button>
       <button onClick={deleteFilmHandler} className='ui button' type="button">Delete</button>
     </div>
   </div>

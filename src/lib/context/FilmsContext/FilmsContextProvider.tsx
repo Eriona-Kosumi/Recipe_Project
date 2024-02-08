@@ -7,6 +7,7 @@ import { randomId } from "../../helpers/randomId";
 import { FilmInterface } from "../../../components/Films/FilmCard";
 import { allFilms } from "../../../api/Films/films.client";
 import { FilmRespnseType } from "../../../api/Films/films.types";
+import { useNavigate } from "react-router-dom";
 
 interface Props {
     children: React.ReactNode;
@@ -18,6 +19,7 @@ const FilmsContextProvider = ({children}: Props) => {
     const [films, setFilms] = useState<FilmRespnseType[]>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [error, setError] = useState<string>();
+    const navigate = useNavigate()
 
     const [selectedFilm, setSelectedFilm] = useState<FilmRespnseType | undefined>();
 
@@ -47,7 +49,6 @@ const FilmsContextProvider = ({children}: Props) => {
 
   const updateFilm = (id: string, form: FormDataType) => {
     setFilms(sortFilms(films.map(film => film._id === id ? {...film, ...form} : film)))
-    setSelectedFilm(undefined)
   }
 
   const deleteFilm = (id: string) => {
