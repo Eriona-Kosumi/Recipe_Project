@@ -4,6 +4,7 @@ import { BrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { Routes as Route } from "./routes/Routes";
 import 'semantic-ui-css/semantic.min.css'
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const queryClient = new QueryClient();

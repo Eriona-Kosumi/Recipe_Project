@@ -17,14 +17,16 @@ export const LoginForm = () => {
   const formik = useLoginFormik({
     onSubmit: async (values, formikHelpers) => {
       try {
-        const res = await login(values);
+        const res = await login(values)
+        toast.success('Logged in successfully')
         authCtx.login(res.data.token);
         navigate('/')
       } catch (error: any) {
-        toast.error(error);
+        toast.error(error.response.data.errors.global)
       }
     },
   });
+  
   const handleFormikChange = (name: string, value: string | number) => {
     formik.setFieldValue(name, value);
     formik.setFieldTouched(name, true);

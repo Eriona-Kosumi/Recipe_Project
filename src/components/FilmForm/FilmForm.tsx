@@ -41,10 +41,9 @@ const FilmForm = () => {
 
   const {addNewFilm, updateFilm} = useFilmsContext()
 
-  useEffect(() => {
     if(filmId){
       console.log('fetching');
-      
+
       getFilmById(filmId).then(response => {
         console.log({response});
         const { film } = response.data 
@@ -52,8 +51,7 @@ const FilmForm = () => {
         setFormData(film)
       })
     }
-  }, [])
-
+    
   const handleStringInput = (event: React.FormEvent<HTMLInputElement>) => {
     const {name, value} = event.currentTarget;
     setFormData((previousState: AddFilmRequest) => ({
