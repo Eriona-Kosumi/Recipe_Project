@@ -1,3 +1,4 @@
+//Routes.tsx
 import { RouteObject, useRoutes } from "react-router-dom";
 
 import { RouteWrapper } from "./RouteWrapper";
@@ -7,7 +8,10 @@ import { Home } from "../pages/Home/Home";
 import { Login } from "../pages/Login/Login";
 import { Register } from "../pages/Register/Register";
 import { ResetPassword } from "../pages/ResetPassword/ResetPassword";
-import AddFilm from "../pages/AddFilm/AddFilm";
+import AddRecipe from "../pages/AddRecipe/AddRecipe";
+import Favorites from "../components/Favorites";
+
+import FavoriteRecipes from "../pages/FavoriteRecipes/FavoriteRecipes";
 
 export enum RouteType {
   PUBLIC,
@@ -19,27 +23,36 @@ export const appRoutes: RouteObject[] = [
   {
     path: "/",
     element: (
-      <RouteWrapper routeType={RouteType.PRIVATE}>
+      <RouteWrapper routeType={RouteType.PUBLIC}>
         <Home />
+      </RouteWrapper>
+    )
+  },
+  {
+    path: "add-recipe",
+    element: (
+      <RouteWrapper routeType={RouteType.PUBLIC}>
+        <AddRecipe />
+      </RouteWrapper>
+    )
+  },
+  {
+    path: "update-recipe/:recipeId",
+    element: (
+      <RouteWrapper routeType={RouteType.PUBLIC}>
+        <AddRecipe />
+      </RouteWrapper>
+    )
+  },
+  {
+    path: "favorites",
+    element: (
+      <RouteWrapper routeType={RouteType.PUBLIC}>
+        <FavoriteRecipes />
       </RouteWrapper>
     ),
   },
-  {
-    path: 'add-film',
-    element: (
-      <RouteWrapper routeType={RouteType.PRIVATE}>
-        <AddFilm />
-      </RouteWrapper>
-    )
-  },
-  {
-    path: 'update-film/:filmId',
-    element: (
-      <RouteWrapper routeType={RouteType.PRIVATE}>
-        <AddFilm />
-      </RouteWrapper>
-    )
-  },
+
   {
     path: "/login",
     element: (

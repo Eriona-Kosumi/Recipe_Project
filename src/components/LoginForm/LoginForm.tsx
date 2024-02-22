@@ -6,9 +6,10 @@ import Button from "../shared/Button/Button";
 import { useLoginFormik } from "../../lib/hooks/useLoginFormik";
 
 import { login } from "../../api/User/user.client";
-import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { PasswordField } from "../shared/PasswordField/PasswordField";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const LoginForm = () => {
   const authCtx = useAuthContext();
@@ -33,7 +34,7 @@ export const LoginForm = () => {
   };
 
   return (
-    <div className="LoginForm">
+    <div className="LoginForm ">
       <form className="mb-3  w-[300px]" onSubmit={formik.handleSubmit}>
         <h2 className="mt-8 mb-12 text-4xl font-bold text-left text-black md:mt-0">Sign in</h2>
 

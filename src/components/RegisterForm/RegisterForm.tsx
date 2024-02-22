@@ -1,4 +1,4 @@
-import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import Input from "../shared/Input/Input";
 import Button from "../shared/Button/Button";
@@ -7,6 +7,7 @@ import { register } from "../../api/User/user.client";
 
 import { useRegisterFormik } from "../../lib/hooks/useRegisterFormik";
 import { NavLink } from "react-router-dom";
+import { toast } from "react-toastify";
 
 export const RegisterForm = () => {
   const formik = useRegisterFormik({
@@ -26,7 +27,7 @@ export const RegisterForm = () => {
   });
   return (
     <div className="LoginForm">
-      <form className="mb-3" onSubmit={formik.handleSubmit}>
+      <form className="mb-3 w-[300px]" onSubmit={formik.handleSubmit}>
         <h2 className="mt-8 mb-12 text-4xl font-bold text-left text-black md:mt-0">Sign up</h2>
         
         <Input
