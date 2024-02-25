@@ -130,7 +130,7 @@ Rating:
 
             <p><strong style={{color:"black"}}>Instructions:</strong></p>
 <ol>
-  {recipe.instructions.split('\,').map((instruction, index) => (
+  {recipe.instructions.split(',').map((instruction, index) => (
     <li key={index}>{instruction}</li>
   ))}
 </ol>

@@ -31,7 +31,7 @@ export const appRoutes: RouteObject[] = [
   {
     path: "add-recipe",
     element: (
-      <RouteWrapper routeType={RouteType.PUBLIC}>
+      <RouteWrapper routeType={RouteType.PRIVATE}>
         <AddRecipe />
       </RouteWrapper>
     )
@@ -39,7 +39,7 @@ export const appRoutes: RouteObject[] = [
   {
     path: "update-recipe/:recipeId",
     element: (
-      <RouteWrapper routeType={RouteType.PUBLIC}>
+      <RouteWrapper routeType={RouteType.PRIVATE}>
         <AddRecipe />
       </RouteWrapper>
     )
@@ -47,7 +47,7 @@ export const appRoutes: RouteObject[] = [
   {
     path: "favorites",
     element: (
-      <RouteWrapper routeType={RouteType.PUBLIC}>
+      <RouteWrapper routeType={RouteType.PRIVATE}>
         <FavoriteRecipes />
       </RouteWrapper>
     ),
